@@ -1,0 +1,19 @@
+<form #login="ngForm" (ngSubmit)="onSubmit()">
+  <h3 class="mat-h3">Bem-Vindo(a) de volta!</h3>
+
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input type="email" name="email" matInput ngModel required>
+      <mat-icon matSuffix>email</mat-icon>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Senha</mat-label>
+      <input type="password"  name="password" matInput ngModel required>
+      <mat-icon matSuffix>lock</mat-icon>
+    </mat-form-field>
+  </p>
+  <button type="submit" mat-raised-button color="primary"  [disabled]="login.invalid">Entrar</button>
+</form>
