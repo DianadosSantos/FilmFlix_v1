@@ -1,0 +1,19 @@
+.spacer {
+  flex: 1 1 auto;
+}
+.avatar {
+  border-radius: 50%;
+  align-self: center;
+  height: 24px;
+  width: 25px;
+  background-color: red;
+  cursor: pointer;
+}
+
+.avatar.avatar-active {
+  outline: 3px solid red;
+}
+
+.user-menu {
+  display: flex;
+}

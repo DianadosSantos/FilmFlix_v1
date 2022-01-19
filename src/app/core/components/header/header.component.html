@@ -1,3 +1,15 @@
 <mat-toolbar>
-  <span>FX</span>
+<a routerLink='/'>
+  <img src="../../../../assets/img/logo-minimal.png" alt="brand" height="28" />
+</a>
+<span class="spacer"></span>
+  <a mat-button routerLink="auth/login" routerLinkActive="mat-accent">Login</a>
+  <a mat-button routerLink="auth/registro"  routerLinkActive="mat-accent">Registro</a>
+
+  <div class="user-menu" >
+    <img class="avatar" src="../../../../assets/img/user_default.png" alt="Avatar"  />
+    <button mat-icon-button>
+      <mat-icon>logout</mat-icon>
+    </button>
+  </div>
 </mat-toolbar>
