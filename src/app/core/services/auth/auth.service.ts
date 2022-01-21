@@ -5,6 +5,7 @@ import {
   signInWithEmailAndPassword,
 } from '@angular/fire/auth';
 import { collection, Firestore, doc, setDoc } from '@angular/fire/firestore';
+import { updateDoc } from 'firebase/firestore';
 import { user } from 'rxfire/auth';
 import { docData } from 'rxfire/firestore';
 import { from, map, of, switchMap, tap } from 'rxjs';
@@ -14,8 +15,9 @@ import { User } from '../../models/user';
   providedIn: 'root'
 })
 export class AuthService {
-
   constructor(private auth: Auth, private db: Firestore) { }
+
+
 
   login(email:string , password:string){
     return from(signInWithEmailAndPassword(this.auth , email, password));
@@ -50,6 +52,22 @@ export class AuthService {
     const users = collection(this.db, 'users');
     const userDoc = doc(users, uid);
 
-    return docData(userDoc).pipe(map((data) => data as User ));
+    return docData(userDoc).pipe(
+      map(
+        (data) => ({ ...data, birthdate: data['birthdate'].toDate() } as User)
+      )
+    );
   }
+
+  update(user:User){
+    const users = collection(this.db, 'users');
+    const userDoc = doc(users, user.uid);
+
+    return from(updateDoc(userDoc, user as any));
+  }
+
+  logout(){
+    this.auth.signOut();
+  }
+
 }
