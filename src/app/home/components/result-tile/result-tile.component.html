@@ -1,0 +1,5 @@
+<a routerLink="{{result.media_type}}/{{result.id}}"  [title]="result.title || result.name">
+  <mat-grid-tile class="rounded-tile">
+      <div><img class="poster-image" src="https://image.tmdb.org/t/p/w300/{{ result.poster_path }}" [alt]="result.title || result.name" /></div>
+  </mat-grid-tile>
+</a>

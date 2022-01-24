@@ -1,1 +1,38 @@
-<p>home works!</p>
+<div class="grid" *ngIf="trending$ | async as results">
+  <mat-grid-list cols="6" rowHeight="3:4" gutterSize="8" class="results">
+    <h2 class="mat-h2">Tendências</h2>
+    <a routerLink="{{result.media_type}}/{{result.id}}" *ngFor="let result of results">
+      <mat-grid-tile class="rounded-tile">
+        <div>
+          <img class="poster-image" src="https://image.tmdb.org/t/p/w300/{{ result.poster_path }}" [alt]="result.title || result.name" [title]="result.title || result.name" />
+        </div>
+      </mat-grid-tile>
+    </a>
+  </mat-grid-list>
+</div>
+<div class="search-area">
+  <h2 class="mat-h2">Buscar</h2>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Buscar</mat-label>
+      <input matInput #searchInput />
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </p>
+  <mat-divider></mat-divider>
+  <div *ngIf="results$ | async as search; else searchEmpty">
+    <mat-grid-list cols="6" rowHeight="3:4" gutterSize="8" class="results">
+      <app-result-tile *ngFor="let result of search" [result]="result"></app-result-tile>
+      <a routerLink="{{result.media_type}}/{{result.id}}" *ngFor="let result of search">
+        <mat-grid-tile class="rounded-tile">
+          <div>
+            <img class="poster-image" [src]="createImageLink(result.poster_path)" [alt]="result.title || result.name" [title]="result.title || result.name" />
+          </div>
+        </mat-grid-tile>
+      </a>
+    </mat-grid-list>
+  </div>
+  <ng-template #searchEmpty>
+    <h2 class="mat-h2">Busque seus filmes/séries favoritos</h2>
+  </ng-template>
+</div>

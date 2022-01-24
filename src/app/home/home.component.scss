@@ -1,0 +1,25 @@
+.results,
+.search-area {
+  margin: 0 8px;
+  padding: 8px;
+}
+
+.rounded-tile {
+  border-radius: 6px;
+}
+
+.poster-image {
+  width: 100%;
+}
+
+.poster-image:hover {
+  filter: brightness(40%);
+}
+
+.grid {
+  color: white;
+}
+
+.content {
+  margin-top: 56px;
+}
