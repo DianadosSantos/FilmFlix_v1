@@ -35,4 +35,10 @@ export class TmdbApiService {
     }).pipe(map((data) => data.results));
   }
 
+  getDetailById(id:number, type: 'movie' | 'tv'): Observable<MovieTvBase>{
+    return this.http.get<MovieTvBase>(`${this.baseUrl}/${type}/${id}`,{
+      params:this.options,
+    });
+  }
+
 }
